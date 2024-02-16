@@ -1,0 +1,30 @@
+.heading {
+  margin: 40px;
+  text-align: center;
+  color: dodgerblue;
+  font-weight: bold;
+}
+.card-view {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.view-btn {
+  background-color: dodgerblue;
+  color: white;
+  padding: 0.5rem 2rem;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: scale 0.2 ease;
+  height: 45px;
+}
+
+.view-btn:hover {
+  scale: 1.05;
+  color: white;
+}
