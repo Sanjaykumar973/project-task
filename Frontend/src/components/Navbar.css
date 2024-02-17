@@ -6,13 +6,10 @@
   font-family: "Exo 2", sans-serif;
 }
 
-.hero-section {
-  height: 600px;
+.nav-section {
+  height: 70px;
   width: 100%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
-  background-position: center;
-  background-size: cover;
+  background-color: black;
 }
 header {
   position: relative;
@@ -42,8 +39,8 @@ a:hover {
   align-items: center;
 }
 
-.navbar .logo {
-  font-weight: bold;
+.navbar .logo img {
+  width: 250px;
 }
 .navbar .links {
   display: flex;
@@ -83,38 +80,7 @@ a:hover {
 .action-btn:active {
   scale: 0.95;
 }
-.hero-search {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding-top: 8%;
-  gap: 40px;
-}
-.hero-search h1 {
-  color: white;
-  font-size: 60px;
-  font-weight: 700;
-}
-.hero-search span {
-  color: dodgerblue;
-  font-size: 90px;
-  font-weight: 900;
-}
 
-.input {
-  border-radius: 50px;
-  border: none;
-  width: 500px;
-  height: 45px;
-  background-color: #fff;
-  outline: none;
-  border: 1.5px solid #222;
-  padding-left: 20px;
-}
-.input:focus-within {
-  color: var(--color-white);
-}
 /* Dropdown -menu */
 
 .dropdown-menu {

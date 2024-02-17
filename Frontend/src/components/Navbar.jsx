@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import FormContext from "../../FormContext";
 
 function Navbar() {
+  const { user, logout } = useContext(FormContext);
+
   return (
     <div>
-      <div className="hero-section">
+      <div className="nav-section">
         <header>
           <div className="hero">
             <nav className="navbar">
-              <Link className="logo" to="http://">
+              <Link className="logo" to="/home">
                 <img
                   src="https://storage.googleapis.com/yoga_data/general/company/20221209_CMPNY_1_30028149942.png"
                   alt="logo"
@@ -17,19 +20,19 @@ function Navbar() {
               </Link>
               <ul className="links">
                 <li>
-                  <Link to="">Home</Link>
+                  <Link to="/home">Home</Link>
                 </li>
                 <li>
-                  <Link to="">About</Link>
+                  <Link to="/home">About</Link>
                 </li>
                 <li>
-                  <Link to="">Service</Link>
+                  <Link to="/home">Service</Link>
                 </li>
                 <li>
-                  <Link to="">Gallery</Link>
+                  <Link to="/home">Gallery</Link>
                 </li>
                 <li>
-                  <Link to="">Contact</Link>
+                  <Link to="/home">Contact</Link>
                 </li>
               </ul>
               <div className="buttons">
@@ -38,26 +41,23 @@ function Navbar() {
                     Explore
                   </button>
                 </Link>
-                <Link to="/">
-                  <button className="action-btn" type="button">
-                    Login
-                  </button>
-                </Link>
+                {user ? (
+                  <Link to="/">
+                    <button className="action-btn" type="button">
+                      {user && user.name}( Logout )
+                    </button>
+                  </Link>
+                ) : (
+                  <Link to="/">
+                    <button className="action-btn" type="button">
+                      Login
+                    </button>
+                  </Link>
+                )}
               </div>
             </nav>
           </div>
         </header>
-        <div className="hero-search">
-          <h1>
-            Welcome To <span>YOGPATH</span>
-          </h1>
-          <input
-            className="input"
-            type="text"
-            placeholder="Search your Yoga Teacher"
-          />
-          <button className="action-btn">Search</button>
-        </div>
       </div>
     </div>
   );

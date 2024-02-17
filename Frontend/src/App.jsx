@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Login from "./components/login";
 import Register from "./components/Register";
-
 import Home from "./components/Home";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
@@ -9,10 +8,11 @@ import FormContext from "../FormContext";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import Explore from "./components/Explore";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [yogaTeacher, setYogaTeacher] = useState([]);
+  const [yogaTeachers, setYogaTeacher] = useState([]);
 
   const login = (email, password) => {
     fetch("http://localhost:8000/auth/login", {
@@ -28,6 +28,7 @@ function App() {
           toast.error(data.message);
         } else {
           setUser(data);
+          localStorage.setItem("userdata", JSON.stringify(data));
           navigator("/home");
         }
       })
@@ -74,7 +75,7 @@ function App() {
         if (data.success == false) {
           alert("Error while Fetching Teachers " + data.message);
         } else {
-          setTodos(data.yogaTeacher);
+          setYogaTeacher(data.yogaTeachers);
         }
       })
       .catch((err) => console.log("Error ", err.message));
@@ -83,12 +84,12 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem("userdata")) {
       setUser(JSON.parse(localStorage.getItem("userdata")));
-      natigate("/home");
+      navigator("/home");
     }
   }, []);
 
   const logout = () => {
-    natigate("/");
+    navigator("/");
     localStorage.removeItem("userdata");
     setUser(null);
   };
@@ -96,9 +97,18 @@ function App() {
   return (
     <div>
       <FormContext.Provider
-        value={{ login, signup, user, Explore, fetchAllTeachers, logout }}
+        value={{
+          login,
+          signup,
+          user,
+          Explore,
+          fetchAllTeachers,
+          logout,
+          yogaTeachers,
+        }}
       >
         <ToastContainer />
+        <Navbar />
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />

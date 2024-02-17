@@ -1,24 +1,24 @@
 const mongoose = require("mongoose");
 
-const yogaSchema = new mongoose.Schema({
+const bookingSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
   },
-  location: {
+  email: {
     type: String,
     required: true,
   },
-  experience: {
+  address: {
     type: String,
     required: true,
   },
-  description: {
+  date: {
     type: String,
   },
-  profile: {
+  time: {
     type: String,
   },
 });
 
-module.exports = mongoose.model("yoga", yogaSchema);
+module.exports = mongoose.model("booking", bookingSchema);

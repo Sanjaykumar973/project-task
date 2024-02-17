@@ -1,27 +1,31 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./Explore.css";
+import { useContext, useEffect } from "react";
+import FormContext from "../../FormContext";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Explore() {
+  const { user, fetchAllTeachers, yogaTeachers, logout } =
+    useContext(FormContext);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // if user doen'st exitst then go back to login
+    if (!user) {
+      console.log(user);
+      navigate("/");
+    } else {
+      // otherwise fetch all his todos
+      fetchAllTeachers();
+    }
+  }, []);
+
   return (
     <div>
       <div className="container-fluid my-4 py-4">
         <div className="row">
           <aside className="col-md-3">
             <div className="card">
-              <article className="filter-group">
-                <header className="card-header">
-                  <Link
-                    to="#"
-                    data-toggle="collapse"
-                    data-target="#collapse_1"
-                    aria-expanded="true"
-                    className=""
-                  >
-                    <i className="icon-control fa fa-chevron-down" />
-                    <h6 className="title">Product type</h6>
-                  </Link>
-                </header>
+              <article className="filter-group text-dark">
                 <div
                   className="filter-content collapse show"
                   id="collapse_1"
@@ -42,28 +46,17 @@ export default function Explore() {
                         </div>
                       </div>
                     </form>
+                    <header className="card-header">
+                      <h6 className="title">Services </h6>
+                    </header>
                     <ul className="list-menu">
-                      <li>
-                        <a href="#">People</a>
-                      </li>
-                      <li>
-                        <a href="#">Watches </a>
-                      </li>
-                      <li>
-                        <a href="#">Cinema</a>
-                      </li>
-                      <li>
-                        <a href="#">Clothes</a>
-                      </li>
-                      <li>
-                        <a href="#">Home items </a>
-                      </li>
-                      <li>
-                        <a href="#">Animals</a>
-                      </li>
-                      <li>
-                        <a href="#">People </a>
-                      </li>
+                      <li>People</li>
+                      <li>Watches</li>
+                      <li>Cinema</li>
+                      <li>Clothes</li>
+                      <li>Home items</li>
+                      <li>Animals</li>
+                      <li>People</li>
                     </ul>
                   </div>{" "}
                   {/* card-body.// */}
@@ -72,16 +65,7 @@ export default function Explore() {
               {/* filter-group  .// */}
               <article className="filter-group">
                 <header className="card-header">
-                  <a
-                    href="#"
-                    data-toggle="collapse"
-                    data-target="#collapse_2"
-                    aria-expanded="true"
-                    className=""
-                  >
-                    <i className="icon-control fa fa-chevron-down" />
-                    <h6 className="title">Brands </h6>
-                  </a>
+                  <h6 className="title">Brands </h6>
                 </header>
                 <div
                   className="filter-content collapse show"
@@ -157,16 +141,7 @@ export default function Explore() {
               {/* filter-group .// */}
               <article className="filter-group">
                 <header className="card-header">
-                  <a
-                    href="#"
-                    data-toggle="collapse"
-                    data-target="#collapse_3"
-                    aria-expanded="true"
-                    className=""
-                  >
-                    <i className="icon-control fa fa-chevron-down" />
-                    <h6 className="title">Price range </h6>
-                  </a>
+                  <h6 className="title">Price range </h6>
                 </header>
                 <div
                   className="filter-content collapse show"
@@ -208,16 +183,7 @@ export default function Explore() {
               {/* filter-group .// */}
               <article className="filter-group">
                 <header className="card-header">
-                  <a
-                    href="#"
-                    data-toggle="collapse"
-                    data-target="#collapse_4"
-                    aria-expanded="true"
-                    className=""
-                  >
-                    <i className="icon-control fa fa-chevron-down" />
-                    <h6 className="title">Sizes </h6>
-                  </a>
+                  <h6 className="title">Sizes </h6>
                 </header>
                 <div
                   className="filter-content collapse show"
@@ -245,335 +211,147 @@ export default function Explore() {
                   {/* card-body.// */}
                 </div>
               </article>{" "}
-              {/* filter-group .// */}
-              <article className="filter-group">
-                <header className="card-header">
-                  <a
-                    href="#"
-                    data-toggle="collapse"
-                    data-target="#collapse_5"
-                    aria-expanded="false"
-                    className=""
-                  >
-                    <i className="icon-control fa fa-chevron-down" />
-                    <h6 className="title">More filter </h6>
-                  </a>
-                </header>
-                <div
-                  className="filter-content collapse in"
-                  id="collapse_5"
-                  style={{}}
-                >
-                  <div className="card-body">
-                    <label className="custom-control custom-radio">
-                      <input
-                        type="radio"
-                        name="myfilter_radio"
-                        defaultChecked=""
-                        className="custom-control-input"
-                      />
-                      <div className="custom-control-label">Any condition</div>
-                    </label>
-                    <label className="custom-control custom-radio">
-                      <input
-                        type="radio"
-                        name="myfilter_radio"
-                        className="custom-control-input"
-                      />
-                      <div className="custom-control-label">Brand new </div>
-                    </label>
-                    <label className="custom-control custom-radio">
-                      <input
-                        type="radio"
-                        name="myfilter_radio"
-                        className="custom-control-input"
-                      />
-                      <div className="custom-control-label">Used items</div>
-                    </label>
-                    <label className="custom-control custom-radio">
-                      <input
-                        type="radio"
-                        name="myfilter_radio"
-                        className="custom-control-input"
-                      />
-                      <div className="custom-control-label">Very old</div>
-                    </label>
-                  </div>
-                  {/* card-body.// */}
-                </div>
-              </article>{" "}
-              {/* filter-group .// */}
             </div>{" "}
             {/* card.// */}
           </aside>
           <main className="col-md-9">
-            <header className="border-bottom mb-4 pb-3">
-              <div className="form-inline">
-                <span className="mr-md-auto">32 Items found </span>
-                <select className="mr-2 form-control">
-                  <option>Latest items</option>
-                  <option>Trending</option>
-                  <option>Most Popular</option>
-                  <option>Cheapest</option>
-                </select>
-                <div className="btn-group">
-                  <a
-                    href="#"
-                    className="btn btn-outline-secondary"
-                    data-toggle="tooltip"
-                    title=""
-                    data-original-title="List view"
-                  >
-                    <i className="fa fa-bars" />
-                  </a>
-                  <a
-                    href="#"
-                    className="btn  btn-outline-secondary active"
-                    data-toggle="tooltip"
-                    title=""
-                    data-original-title="Grid view"
-                  >
-                    <i className="fa fa-th" />
-                  </a>
-                </div>
-              </div>
+            <header className="border-bottom heading mb-4 pb-3">
+              <h1>All Ours Yoga Teachers</h1>
             </header>
             {/* sect-heading */}
             <div className="row">
-              <div className="col-md-4">
-                <figure className="card card-product-grid">
-                  <div className="img-wrap">
-                    <span className="badge badge-danger"> NEW </span>
-                    <img
-                      src="http://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/7.jpg"
-                      className="img-fluid"
-                    />
-                    <a className="btn-overlay" href="#">
-                      <i className="fa fa-search-plus" /> Quick view
-                    </a>
-                  </div>{" "}
-                  {/* img-wrap.// */}
-                  <figcaption className="info-wrap">
-                    <div className="fix-height">
-                      <a href="#" className="title">
-                        Great item name goes here
-                      </a>
-                      <div className="price-wrap mt-2">
-                        <span className="price">$1280</span>
-                        <del className="price-old">$1980</del>
+              {yogaTeachers &&
+                yogaTeachers.map((item, index) => (
+                  <div className="col-md-4">
+                    <figure className="card card-product-grid">
+                      <div className="img-wrap">
+                        <img src={item && item.profile} className="img-fluid" />
                       </div>{" "}
-                      {/* price-wrap.// */}
-                    </div>
-                    <a href="#" className="btn btn-block btn-primary">
-                      Add to cart{" "}
-                    </a>
-                  </figcaption>
-                </figure>
-              </div>{" "}
-              {/* col.// */}
-              <div className="col-md-4">
-                <figure className="card card-product-grid">
-                  <div className="img-wrap">
-                    <img
-                      src="http://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/7.jpg"
-                      className="img-fluid"
-                    />
-                    <a className="btn-overlay" href="#">
-                      <i className="fa fa-search-plus" /> Quick view
-                    </a>
-                  </div>{" "}
-                  {/* img-wrap.// */}
-                  <figcaption className="info-wrap">
-                    <div className="fix-height">
-                      <a href="#" className="title">
-                        Product name goes here just for demo item
-                      </a>
-                      <div className="price-wrap mt-2">
-                        <span className="price">$1280</span>
-                      </div>{" "}
-                      {/* price-wrap.// */}
-                    </div>
-                    <a href="#" className="btn btn-block btn-primary">
-                      Add to cart{" "}
-                    </a>
-                  </figcaption>
-                </figure>
-              </div>{" "}
-              {/* col.// */}
-              <div className="col-md-4">
-                <figure className="card card-product-grid">
-                  <div className="img-wrap">
-                    <img
-                      src="http://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/7.jpg"
-                      className="img-fluid"
-                    />
-                    <a className="btn-overlay" href="#">
-                      <i className="fa fa-search-plus" /> Quick view
-                    </a>
-                  </div>{" "}
-                  {/* img-wrap.// */}
-                  <figcaption className="info-wrap">
-                    <div className="fix-height">
-                      <a href="#" className="title">
-                        Product name goes here just for demo item
-                      </a>
-                      <div className="price-wrap mt-2">
-                        <span className="price">$1280</span>
-                      </div>{" "}
-                      {/* price-wrap.// */}
-                    </div>
-                    <a href="#" className="btn btn-block btn-primary">
-                      Add to cart{" "}
-                    </a>
-                  </figcaption>
-                </figure>
-              </div>{" "}
-              {/* col.// */}
-              <div className="col-md-4">
-                <figure className="card card-product-grid">
-                  <div className="img-wrap">
-                    <img
-                      src="http://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/7.jpg"
-                      className="img-fluid"
-                    />
-                    <a className="btn-overlay" href="#">
-                      <i className="fa fa-search-plus" /> Quick view
-                    </a>
-                  </div>{" "}
-                  {/* img-wrap.// */}
-                  <figcaption className="info-wrap">
-                    <div className="fix-height">
-                      <a href="#" className="title">
-                        Product name goes here just for demo item
-                      </a>
-                      <div className="price-wrap mt-2">
-                        <span className="price">$1280</span>
-                      </div>{" "}
-                      {/* price-wrap.// */}
-                    </div>
-                    <a href="#" className="btn btn-block btn-primary">
-                      Add to cart{" "}
-                    </a>
-                  </figcaption>
-                </figure>
-              </div>{" "}
-              {/* col.// */}
-              <div className="col-md-4">
-                <figure className="card card-product-grid">
-                  <div className="img-wrap">
-                    <img
-                      src="http://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/7.jpg"
-                      className="img-fluid"
-                    />
-                    <a className="btn-overlay" href="#">
-                      <i className="fa fa-search-plus" /> Quick view
-                    </a>
-                  </div>{" "}
-                  {/* img-wrap.// */}
-                  <figcaption className="info-wrap">
-                    <div className="fix-height">
-                      <a href="#" className="title">
-                        Product name goes here just for demo item
-                      </a>
-                      <div className="price-wrap mt-2">
-                        <span className="price">$1280</span>
-                      </div>{" "}
-                      {/* price-wrap.// */}
-                    </div>
-                    <a href="#" className="btn btn-block btn-primary">
-                      Add to cart{" "}
-                    </a>
-                  </figcaption>
-                </figure>
-              </div>{" "}
-              {/* col.// */}
-              <div className="col-md-4">
-                <figure className="card card-product-grid">
-                  <div className="img-wrap">
-                    <img
-                      src="http://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/7.jpg"
-                      className="img-fluid"
-                    />
-                    <a className="btn-overlay" href="#">
-                      <i className="fa fa-search-plus" /> Quick view
-                    </a>
-                  </div>{" "}
-                  {/* img-wrap.// */}
-                  <figcaption className="info-wrap">
-                    <div className="fix-height">
-                      <a href="#" className="title">
-                        Product name goes here just for demo item
-                      </a>
-                      <div className="price-wrap mt-2">
-                        <span className="price">$1280</span>
-                      </div>{" "}
-                      {/* price-wrap.// */}
-                    </div>
-                    <a href="#" className="btn btn-block btn-primary">
-                      Add to cart{" "}
-                    </a>
-                  </figcaption>
-                </figure>
-              </div>{" "}
-              {/* col.// */}
-              <div className="col-md-4">
-                <figure className="card card-product-grid">
-                  <div className="img-wrap">
-                    <img
-                      src="http://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/7.jpg"
-                      className="img-fluid"
-                    />
-                    <a className="btn-overlay" href="#">
-                      <i className="fa fa-search-plus" /> Quick view
-                    </a>
-                  </div>{" "}
-                  {/* img-wrap.// */}
-                  <figcaption className="info-wrap">
-                    <div className="fix-height">
-                      <a href="#" className="title">
-                        Product name goes here just for demo item
-                      </a>
-                      <div className="price-wrap mt-2">
-                        <span className="price">$1280</span>
-                      </div>{" "}
-                      {/* price-wrap.// */}
-                    </div>
-                    <a href="#" className="btn btn-block btn-primary">
-                      Add to cart{" "}
-                    </a>
-                  </figcaption>
-                </figure>
-              </div>{" "}
-              {/* col.// */}
-              <div className="col-md-4">
-                <figure className="card card-product-grid">
-                  <div className="img-wrap">
-                    <img
-                      src="http://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/7.jpg"
-                      className="img-fluid"
-                    />
-                    <a className="btn-overlay" href="#">
-                      <i className="fa fa-search-plus" /> Quick view
-                    </a>
-                  </div>{" "}
-                  {/* img-wrap.// */}
-                  <figcaption className="info-wrap">
-                    <div className="fix-height">
-                      <a href="#" className="title">
-                        Product name goes here just for demo item
-                      </a>
-                      <div className="price-wrap mt-2">
-                        <span className="price">$1280</span>
-                      </div>{" "}
-                      {/* price-wrap.// */}
-                    </div>
-                    <a href="#" className="btn btn-block btn-primary">
-                      Add to cart{" "}
-                    </a>
-                  </figcaption>
-                </figure>
-              </div>{" "}
-              {/* col.// */}
+                      {/* img-wrap.// */}
+                      <figcaption className="info-wrap">
+                        <div className="fix-height">
+                          <h4 href="#" className="title">
+                            {item && item.name}
+                          </h4>
+                          <p>{item && item.location}</p>
+                          <p>{item && item.experience}</p>
+                        </div>{" "}
+                        <>
+                          {/* Button trigger modal */}
+                          <button
+                            type="button"
+                            className="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                          >
+                            Book Now
+                          </button>
+                          {/* Modal */}
+                          <div
+                            className="modal fade"
+                            id="exampleModal"
+                            tabIndex={-1}
+                            aria-labelledby="exampleModalLabel"
+                            aria-hidden="true"
+                          >
+                            <div className="modal-dialog">
+                              <div className="modal-content">
+                                <div className="modal-header">
+                                  <h5
+                                    className="modal-title"
+                                    id="exampleModalLabel"
+                                  >
+                                    BOOKING FORM
+                                  </h5>
+                                  <button
+                                    type="button"
+                                    className="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                  />
+                                </div>
+                                <div className="modal-body">
+                                  <form action="">
+                                    <div className="form-container">
+                                      <div className="form-control">
+                                        <label htmlFor="name">Name</label>
+                                        <input
+                                          type="text"
+                                          name="name"
+                                          id="name"
+                                          placeholder="Enter Your  Name"
+                                        />
+                                      </div>
+
+                                      <div className="form-control">
+                                        <label htmlFor="email">Email</label>
+                                        <input
+                                          type="email"
+                                          name="email"
+                                          id="email"
+                                          placeholder="Enter Your Email"
+                                        />
+                                      </div>
+
+                                      <div className="textarea-control">
+                                        <label htmlFor="address">Address</label>
+                                        <textarea
+                                          name="address"
+                                          id="address"
+                                          cols={50}
+                                          rows={4}
+                                          placeholder="Enter Your Address"
+                                          defaultValue={""}
+                                        />
+                                      </div>
+
+                                      <div className="form-control">
+                                        <label htmlFor="DOB">
+                                          Date of Birth
+                                        </label>
+                                        <input
+                                          defaultValue="2022-01-10"
+                                          type="date"
+                                          name="DOB"
+                                          id="DOB"
+                                        />
+                                      </div>
+                                      <div className="form-control">
+                                        <label htmlFor="time">Time</label>
+                                        <input
+                                          type="time"
+                                          name="time"
+                                          id="time"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div className="button-container">
+                                      <div className="modal-footer">
+                                        <button
+                                          type="button"
+                                          className="btn btn-secondary"
+                                          data-bs-dismiss="modal"
+                                        >
+                                          Close
+                                        </button>
+                                        <button
+                                          type="button"
+                                          className="btn btn-primary"
+                                        >
+                                          Apply
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </>
+                      </figcaption>
+                    </figure>
+                  </div>
+                ))}
             </div>{" "}
             {/* row end.// */}
             <nav className="mt-4" aria-label="Page navigation sample">
